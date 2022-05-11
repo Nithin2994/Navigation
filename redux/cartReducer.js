@@ -7,7 +7,9 @@ const cartSlice = createSlice({
   },
   reducers: {
     addToCart(state, action) {
-        state.cartIds.push(action.payload.id)
+        if(!state.cartIds.includes(action.payload.id)){
+            state.cartIds.push(action.payload.id)
+        }
     },
     removeFromCart(state,action){
         state.cartIds.splice(state.cartIds.findIndex(id=> id == action.payload.id),1)

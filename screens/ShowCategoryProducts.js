@@ -2,7 +2,7 @@
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { useLayoutEffect, useState } from 'react'
 import Filter from '../components/Filter'
-import {View, FlatList,Modal, StyleSheet,Text, Pressable, Button} from 'react-native'
+import {View, FlatList,Modal, StyleSheet,Text, Pressable, Button, ImageBackground} from 'react-native'
 import Product from '../components/Product'
 import {products} from '../data/MasterData'
 import {categories} from '../data/MasterData'
@@ -35,7 +35,11 @@ export default function ShowCategoryProducts(){
         navigation.navigate('ProductDetails',{productId : id})
     }
 
-    return <><View style={styles.productsContainer}>
+    return <ImageBackground
+    style={{ flex:1 }}
+    blurRadius={10}
+    source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRusMHlC6osS-V6uVYTznqimvUpwzME6qe8pPVnnjHhOl7JXV-kObJ0BOR8akuPWT8aMBI&usqp=CAU' }}>
+    <View style={styles.productsContainer}>
         <Modal
             animationType="slide"
             transparent={true}
@@ -60,7 +64,7 @@ export default function ShowCategoryProducts(){
   <View style={styles.option}><Button onPress={()=> setFilterModalVisible(true)} title="Filter" color="white"/></View>
   <View style={styles.option}><Button onPress={() => setSort(!sort)} title={sort ? "Revert Sort": "Sort By Price"} color="white"/></View>
 </View>
-</>
+</ImageBackground>
 }
 
 const styles = StyleSheet.create({

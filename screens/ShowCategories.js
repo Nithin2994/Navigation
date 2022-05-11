@@ -26,13 +26,18 @@ export default function ShowCategories({navigation}) {
 
     }
 
-    return <FlatList
+    return <ImageBackground
+    style={{ flex:1 }}
+    blurRadius={10}
+    source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRusMHlC6osS-V6uVYTznqimvUpwzME6qe8pPVnnjHhOl7JXV-kObJ0BOR8akuPWT8aMBI&usqp=CAU' }}>
+        <FlatList
         data={categories}
         renderItem={(item) => categoryTile(item,onPresshandler)}
         keyExtractor={(item) => item.id}
         numColumns={2}
         onPress={onPresshandler}
     />
+    </ImageBackground>
 }
 
 const styles = StyleSheet.create({

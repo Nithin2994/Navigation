@@ -1,6 +1,6 @@
 
 import 'react-native-gesture-handler';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View,ImageBackground } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import ShowCategoryProducts from './screens/ShowCategoryProducts';
 import ShowCategories from './screens/ShowCategories';
@@ -32,12 +32,11 @@ export default function App() {
             width:'50%'
           },
           drawerActiveTintColor:'#1B5E20',
-
           drawerContentStyle:{
             backgroundColor:'#C8E6C9'
           },
           headerStyle :{
-            backgroundColor:'#80CBC4'
+            backgroundColor: '#FFECB3',
           },
           contentStyle:{
             backgroundColor: '#ECEFF1'
@@ -95,16 +94,21 @@ export default function App() {
 
 
   return (
+    <ImageBackground
+                style={{ flex:1 }}
+                source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRusMHlC6osS-V6uVYTznqimvUpwzME6qe8pPVnnjHhOl7JXV-kObJ0BOR8akuPWT8aMBI&usqp=CAU' }}
+            >
     <Provider store={store}>
     <NavigationContainer>
       <View style={styles.container}>
+      
         <StatusBar style="light" />
 
         <stack.Navigator screenOptions={{
           headerShown: false,
           headerTintColor:'#00695C',
           headerStyle :{
-            backgroundColor:'#80CBC4'
+            backgroundColor: '#FFECB3'
           },
           contentStyle:{
             backgroundColor: '#ECEFF1'
@@ -118,6 +122,7 @@ export default function App() {
       </View>
     </NavigationContainer>
     </Provider>
+    </ImageBackground>
   );
 }
 

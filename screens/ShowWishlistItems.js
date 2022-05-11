@@ -1,7 +1,7 @@
 
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { useLayoutEffect, useState } from 'react'
-import {View, FlatList, StyleSheet,Text, Pressable} from 'react-native'
+import {View, FlatList, StyleSheet,Text, Pressable, ImageBackground} from 'react-native'
 import { useSelector } from 'react-redux'
 import Product from '../components/Product'
 import {products} from '../data/MasterData'
@@ -15,7 +15,11 @@ export default function ShowWishlistItems(){
         navigation.navigate('ProductDetails',{productId : id})
     }
 
-    return <View style={styles.productsContainer}>
+    return <ImageBackground
+    style={{ flex:1 }}
+    blurRadius={10}
+    source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRusMHlC6osS-V6uVYTznqimvUpwzME6qe8pPVnnjHhOl7JXV-kObJ0BOR8akuPWT8aMBI&usqp=CAU' }}>
+    <View style={styles.productsContainer}>
         
     <FlatList 
       data={products.filter(p=> wishlistIds.includes(p.id))}
@@ -23,7 +27,9 @@ export default function ShowWishlistItems(){
       keyExtractor={(item,index)=> item.id}
       numColumns={2}
     />
+    
   </View>
+  </ImageBackground>
 }
 
 const styles = StyleSheet.create({

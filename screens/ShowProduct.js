@@ -1,13 +1,13 @@
 
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { useEffect, useLayoutEffect, useState } from 'react'
-import { View, Text, StyleSheet, Image, Dimensions, Button } from 'react-native'
+import { View, Text, StyleSheet, Image, Dimensions, Button, ImageBackground } from 'react-native'
 import { products } from '../data/MasterData'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToWishList, removeFromWishList } from '../redux/wishlistReducer';
 import { addToCart, removeFromCart } from '../redux/cartReducer';
 import { ScrollView } from 'react-native-gesture-handler';
-
+import {SliderBox} from 'react-native-image-slider-box'
 export default function ShowProduct(props) {
 
     const route = useRoute()
@@ -52,15 +52,27 @@ export default function ShowProduct(props) {
 
     const width = Dimensions.get('window').width
 
-    return <><View style={styles.productContainer}>
-        <View style={styles.image}>
-            <Image
+    return <ImageBackground
+    style={{ flex:1 }}
+    blurRadius={10}
+    source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRusMHlC6osS-V6uVYTznqimvUpwzME6qe8pPVnnjHhOl7JXV-kObJ0BOR8akuPWT8aMBI&usqp=CAU' }}>
+    <View style={styles.productContainer}>
+        
+            {/* <Image
                 style={[{ width: width < 400 ? 180 : 200, height: width < 400 ? 200 : 200 }]}
                 source={
                     { uri: product.imagesrc }
                 }
-            />
-        </View>
+            /> */}
+            <SliderBox 
+                        ImageComponentStyle={{borderRadius: 15, width: '97%', marginTop: 5}}
+                        sliderBoxHeight={300}
+                        dotColor="#FFEE58"
+                        inactiveDotColor="#90A4AE"
+                        autoplay
+                        paginationBoxVerticalPadding={20}
+                        circleLoop
+                        images={product.imagesrcs} />
         <View style={{height:'60%'}}>
             <ScrollView >
             <View style={styles.details}>
@@ -73,12 +85,13 @@ export default function ShowProduct(props) {
             </View>
             </ScrollView>
         </View>
+
     </View>
         <View style={styles.addButtons}>
             <View style={styles.addToFavButton}><Button onPress={handleWishlistToggle} title={isWishlisted ? "Remove From Wishlist" : "Add To Wishlist"} color="#000000" /></View>
             <View style={styles.addToCartButton}><Button onPress={handleCartToggle} disabled={!product.available} title={product.available ? !inCart ? "Add To Cart" : "Remove From Cart" : "Out Of Stock"} color="white" /></View>
         </View>
-    </>
+        </ImageBackground>
 }
 
 const styles = StyleSheet.create({
